@@ -12,11 +12,6 @@ GtkWidget *window;
 GtkWidget *button1;
 GtkWidget *button2;
 
-void exit_app(){
-    printf("Exit app \n");
-    gtk_main_quit();
-}
-
 void button_clicked1(){
     printf("algoritmo1 \n");
 }
@@ -103,8 +98,11 @@ int main(int argc, char *argv[]) {
     gtk_builder_add_from_file(builder, "/home/tomeito/CLionProjects/Server/algoritmos.glade",NULL);
 
     window = GTK_WIDGET(gtk_builder_get_object(builder, "myWindow"));
-    button1 = GTK_WIDGET(gtk_builder_get_object(builder, "algoritmo1"));
+    button1 = GTK_WIDGET(gtk_builder_get_object(builder, "algoritmo"));
     button2 = GTK_WIDGET(gtk_builder_get_object(builder, "algoritmo2"));
+
+    g_signal_connect(button1, "clicked", G_CALLBACK(button_clicked1), NULL);
+    g_signal_connect(button2, "clicked", G_CALLBACK(button_clicked2), NULL);
 
     gtk_builder_connect_signals(builder, NULL);
     g_object_unref(builder);
