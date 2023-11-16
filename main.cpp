@@ -64,6 +64,20 @@ int main() {
     imshow("Imagen recibida", image);
     waitKey(0);
 
+    // Load an image from file
+    Mat serverImage = imread("/home/tomeito/CLionProjects/Server/tec-logo.jpg", IMREAD_UNCHANGED);
+
+    // Convert the image to a set of bytes
+    vector<uint8_t> serverImageData;
+    imencode(".jpg", serverImage, serverImageData);
+
+    // Send the image size to the client
+    uint32_t serverImageSize = serverImageData.size();
+    send(clientSocket, &serverImageSize, sizeof(serverImageSize), 0);
+
+    // Send the image data to the client
+    send(clientSocket, serverImageData.data(), serverImageSize, 0);
+
     // Cierra los sockets
     close(clientSocket);
     close(serverSocket);
