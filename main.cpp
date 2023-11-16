@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
     Mat image = imdecode(imageData, IMREAD_UNCHANGED);
 
     // Enseña la imagen recibida
-    imshow("Imagen recibida", image);
+    imshow("Imagen recibida por el Profesor", image);
     waitKey(0);
 
     // Load an image from file
