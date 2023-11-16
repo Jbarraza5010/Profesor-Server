@@ -26,19 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 8,
+				"line" : 10,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 12,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 10,
+				"line" : 12,
 				"parent" : 0
 			}
 		]
@@ -54,6 +54,86 @@
 			],
 			"includes" : 
 			[
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/gtk-3.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/at-spi2-atk/2.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/at-spi-2.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/dbus-1.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/lib/x86_64-linux-gnu/dbus-1.0/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/gio-unix-2.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/cairo"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/pango-1.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/harfbuzz"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/fribidi"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/atk-1.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/pixman-1"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/uuid"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/freetype2"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/gdk-pixbuf-2.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/libpng16"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/libmount"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/blkid"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/glib-2.0"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+				},
 				{
 					"backtrace" : 3,
 					"isSystem" : true,
@@ -261,6 +341,66 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.5.4d",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgtk-3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgdk-3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lpangocairo-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lpango-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lharfbuzz",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-latk-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lcairo-gobject",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lcairo",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgdk_pixbuf-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgio-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgobject-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lglib-2.0",
 				"role" : "libraries"
 			},
 			{
