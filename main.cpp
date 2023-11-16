@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
     vector<uint8_t> imageData(imageSize);
     recv(clientSocket, imageData.data(), imageSize, 0);
 
-    // COnvierte la imagen al formato correcto
+    // Convierte la imagen al formato correcto
     Mat image = imdecode(imageData, IMREAD_UNCHANGED);
 
     // Enseña la imagen recibida
