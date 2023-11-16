@@ -62,33 +62,33 @@ int main(int argc, char *argv[]) {
 
     cout << "Conectado al cliente " << inet_ntoa(clientAddress.sin_addr) << endl;
 
-    // Recive el tamaño de la imagen
+    // Recibe el tamaño de la imagen
     uint32_t imageSize;
     recv(clientSocket, &imageSize, sizeof(imageSize), 0);
 
-    // Recive la información de la imagen
+    // Recibe la información de la imagen
     vector<uint8_t> imageData(imageSize);
     recv(clientSocket, imageData.data(), imageSize, 0);
 
-    // Convierte la imagen al formato correcto
+    // Convierte la imagen
     Mat image = imdecode(imageData, IMREAD_UNCHANGED);
 
     // Enseña la imagen recibida
     imshow("Imagen recibida por el Profesor", image);
     waitKey(0);
 
-    // Load an image from file
+    // Carga la imagen de un archivo
     Mat serverImage = imread("/home/tomeito/CLionProjects/Server/tec-logo.jpg", IMREAD_UNCHANGED);
 
-    // Convert the image to a set of bytes
+    // Convierte la imagen a un set de bytes
     vector<uint8_t> serverImageData;
     imencode(".jpg", serverImage, serverImageData);
 
-    // Send the image size to the client
+    // Envia el tamaño de la imagen al cliente
     uint32_t serverImageSize = serverImageData.size();
     send(clientSocket, &serverImageSize, sizeof(serverImageSize), 0);
 
-    // Send the image data to the client
+    // Envia la imagen al cliente
     send(clientSocket, serverImageData.data(), serverImageSize, 0);
 
     GtkBuilder *builder;
