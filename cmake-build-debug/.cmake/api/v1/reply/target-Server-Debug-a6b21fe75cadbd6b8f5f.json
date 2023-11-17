@@ -405,6 +405,16 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "-lssl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lcrypto",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.5.4d",
 				"role" : "libraries"
 			},
