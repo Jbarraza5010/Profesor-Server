@@ -1,4 +1,3 @@
-// encryption.h
 #ifndef ENCRYPTION2_H
 #define ENCRYPTION2_H
 
@@ -7,5 +6,5 @@
 
 std::vector<uint8_t> encryptRSA(const uint8_t* data, size_t dataSize, RSA* rsaKey);
 
-#endif  // ENCRYPTION2_H
+#endif
 

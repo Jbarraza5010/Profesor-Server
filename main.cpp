@@ -22,7 +22,7 @@ GtkWidget *button2;
 
 int clientSocket;
 
-// Function to load RSA key from file
+// Carga una RSA key
 RSA* loadPublicKey(const char* publicKeyPath) {
     FILE* file = fopen(publicKeyPath, "r");
     if (!file) {
@@ -34,7 +34,7 @@ RSA* loadPublicKey(const char* publicKeyPath) {
     return rsa;
 }
 
-// Function to encrypt data using RSA public key
+// Encrypta la informacion usando la key
 vector<uint8_t> encryptRSA(const uint8_t* data, size_t dataSize, RSA* rsaKey) {
     int rsaSize = RSA_size(rsaKey);
     vector<uint8_t> encryptedData(rsaSize);
@@ -54,22 +54,22 @@ void encryptAES(const vector<uint8_t>& input, vector<uint8_t>& output, const vec
     int len;
     int ciphertext_len;
 
-    // Create and initialize the context
+    // Crea e inicializa el contexto
     ctx = EVP_CIPHER_CTX_new();
     EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, key.data(), NULL);
 
-    // Set up the output buffer
+    // Setea el buffer the output
     output.resize(input.size() + EVP_CIPHER_block_size(EVP_aes_128_ecb()));
 
-    // Perform the encryption
+    // Hace la encrypcion en si
     EVP_EncryptUpdate(ctx, output.data(), &len, input.data(), input.size());
     ciphertext_len = len;
 
-    // Finalize the encryption
+    // FInaliza la encrypcion
     EVP_EncryptFinal_ex(ctx, output.data() + len, &len);
     ciphertext_len += len;
 
-    // Clean up
+    // Limpieza
     EVP_CIPHER_CTX_free(ctx);
     output.resize(ciphertext_len);
 }
@@ -109,10 +109,10 @@ void button_clicked1(){
 }
 
 void button_clicked2(){
-    // Load public key
+    // Carga el key
     RSA* publicKey = loadPublicKey("/home/tomeito/CLionProjects/Profesor-Server/public_key.pem");
 
-    // Load the image from file
+    // Carga la imagen de un archivo
     ifstream imageFile("/home/tomeito/CLionProjects/Profesor-Server/tec-logo.jpg", ios::binary | ios::ate);
     streamsize imageSize = imageFile.tellg();
     imageFile.seekg(0, ios::beg);
@@ -124,19 +124,19 @@ void button_clicked2(){
 
     }
 
-    // Print sizes
+    // Prueba del tamaño de las keys y la imagen
     cout << "Size of data to encrypt: " << imageSize << " bytes" << endl;
     cout << "RSA Key size: " << RSA_size(publicKey) << " bytes" << endl;
     cout << "Maximum allowed size: " << RSA_size(publicKey) - 11 << " bytes" << endl;
 
-// Encrypt image data using RSA
+// Encripta la imagen usando RSA
     vector<uint8_t> encryptedImageData = encryptRSA(imageData.data(), imageSize, publicKey);
 
-// Send the size of the encrypted image data
+// Envia el tamaño de la imagen
     uint32_t encryptedImageSize = encryptedImageData.size();
     send(clientSocket, &encryptedImageSize, sizeof(encryptedImageSize), 0);
 
-// Send the encrypted image data
+// Envia la informacion encriptada
     send(clientSocket, encryptedImageData.data(), encryptedImageSize, 0);
 
 }
