@@ -1155,8 +1155,64 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
   /usr/include/openssl/asn1.h \
   /usr/include/openssl/asn1err.h \
   /usr/include/openssl/objectserr.h \
-  /usr/include/openssl/aes.h
+  /usr/include/openssl/aes.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/err.h
 
+
+/usr/include/openssl/pemerr.h:
+
+/usr/include/openssl/x509v3err.h:
+
+/usr/include/openssl/x509v3.h:
+
+/usr/include/openssl/conftypes.h:
+
+/usr/include/openssl/conferr.h:
+
+/usr/include/openssl/conf.h:
+
+/usr/include/openssl/http.h:
+
+/usr/include/openssl/ocsp.h:
+
+/usr/include/openssl/pkcs7err.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/ecerr.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/openssl/rsa.h:
 
 /usr/include/openssl/aes.h:
 
@@ -1203,6 +1259,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
+
+/usr/include/openssl/dherr.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkradioaction.h:
 
@@ -1300,6 +1358,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 
 /usr/include/gtk-3.0/gtk/gtknotebook.h:
 
+/usr/include/openssl/buffer.h:
+
 /usr/include/gtk-3.0/gtk/gtkmountoperation.h:
 
 /usr/include/gtk-3.0/gtk/gtkmodules.h:
@@ -1325,6 +1385,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/gtk-3.0/gtk/gtkinfobar.h:
 
 /usr/include/gtk-3.0/gtk/gtkimcontextsimple.h:
+
+/usr/include/openssl/ocsperr.h:
 
 /usr/include/gtk-3.0/gtk/gtkiconview.h:
 
@@ -1500,6 +1562,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 
 /usr/include/atk-1.0/atk/atkgobjectaccessible.h:
 
+/usr/include/openssl/rsaerr.h:
+
 /usr/include/atk-1.0/atk/atktext.h:
 
 /usr/include/atk-1.0/atk/atkeditabletext.h:
@@ -1513,6 +1577,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/atk-1.0/atk/atkstate.h:
 
 /usr/include/atk-1.0/atk/atkobject.h:
+
+/usr/include/openssl/err.h:
 
 /usr/include/atk-1.0/atk/atk.h:
 
@@ -1589,6 +1655,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/gtk-3.0/gtk/deprecated/gtkhsv.h:
 
 /usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
+
+/usr/include/openssl/x509_vfy.h:
 
 /usr/include/gtk-3.0/gdk/gdkdevicetool.h:
 
@@ -1928,6 +1996,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 
 /usr/include/opencv4/opencv2/flann/sampling.h:
 
+/usr/include/openssl/lhash.h:
+
 /usr/include/x86_64-linux-gnu/bits/socket.h:
 
 /usr/include/dirent.h:
@@ -1988,6 +2058,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
+/usr/include/openssl/pkcs7.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
@@ -1999,6 +2071,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/glib-2.0/glib/gscanner.h:
 
 /usr/include/c++/11/cwctype:
+
+/usr/include/openssl/dsa.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
 
@@ -2187,6 +2261,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:
 
 /usr/include/glib-2.0/gio/gconverterinputstream.h:
+
+/usr/include/openssl/sha.h:
 
 /usr/include/gtk-3.0/gtk/gtkversion.h:
 
@@ -2482,6 +2558,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 
 /usr/include/c++/11/cstdio:
 
+/usr/include/openssl/x509.h:
+
 /usr/include/opencv4/opencv2/core/affine.hpp:
 
 /usr/include/opencv4/opencv2/core/neon_utils.hpp:
@@ -2631,6 +2709,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/stdint.h:
 
 /usr/include/c++/11/bits/range_access.h:
+
+/usr/include/openssl/buffererr.h:
 
 /usr/include/c++/11/ext/concurrence.h:
 
@@ -2831,6 +2911,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/pango-1.0/pango/pango-features.h:
 
 /usr/include/glib-2.0/glib/gtree.h:
+
+/usr/include/openssl/x509err.h:
 
 /usr/include/glib-2.0/glib/guuid.h:
 
@@ -3193,6 +3275,8 @@ CMakeFiles/Server.dir/main.cpp.o: /home/jct/Profesor-Server/main.cpp \
 /usr/include/c++/11/bits/allocator.h:
 
 /usr/include/glib-2.0/glib/gspawn.h:
+
+/usr/include/openssl/dsaerr.h:
 
 /usr/include/glib-2.0/gio/glistmodel.h:
 
