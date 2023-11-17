@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="gtest"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\opencv4\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/lib/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/include"/>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/lib/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/include"/>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/lib/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/include"/>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/lib/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/include"/>
+					<Add directory="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/tomeito/CLionProjects/Profesor-Server/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/../../../../usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/../../../../usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/../../../../usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/../../../../usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/tomeito/CLionProjects/Profesor-Server/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

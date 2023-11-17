@@ -10,6 +10,8 @@
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
+#include "encryption.h"
+#include "encryption2.h"
 
 using namespace std;
 using namespace cv;
@@ -20,36 +22,31 @@ GtkWidget *button2;
 
 int clientSocket;
 
-void encryptRSA(const vector<uint8_t>& input, vector<uint8_t>& output, const vector<uint8_t>& publicKey) {
-    RSA *rsa = NULL;
-    BIO *keyBio = BIO_new_mem_buf(publicKey.data(), publicKey.size());
-
-    if (keyBio == NULL) {
-        cerr << "Error creando el objeto BIO" << endl;
-        return;
+// Function to load RSA key from file
+RSA* loadPublicKey(const char* publicKeyPath) {
+    FILE* file = fopen(publicKeyPath, "r");
+    if (!file) {
+        cerr << "Error loading public key file" << endl;
+        exit(EXIT_FAILURE);
     }
+    RSA* rsa = PEM_read_RSA_PUBKEY(file, nullptr, nullptr, nullptr);
+    fclose(file);
+    return rsa;
+}
 
-    rsa = PEM_read_bio_RSA_PUBKEY(keyBio, NULL, NULL, NULL);
-    BIO_free(keyBio);
+// Function to encrypt data using RSA public key
+vector<uint8_t> encryptRSA(const uint8_t* data, size_t dataSize, RSA* rsaKey) {
+    int rsaSize = RSA_size(rsaKey);
+    vector<uint8_t> encryptedData(rsaSize);
 
-    if (rsa == NULL) {
-        cerr << "Error leyendo la clave pública RSA" << endl;
-        return;
-    }
-
-    int inputSize = input.size();
-    int outputSize = RSA_size(rsa);
-    output.resize(outputSize);
-
-    int result = RSA_public_encrypt(inputSize, input.data(), output.data(), rsa, RSA_PKCS1_PADDING);
-
+    int result = RSA_public_encrypt(static_cast<int>(dataSize), data, encryptedData.data(), rsaKey, RSA_PKCS1_PADDING);
     if (result == -1) {
-        cerr << "Error encriptando con RSA" << endl;
-        RSA_free(rsa);
-        return;
+        ERR_print_errors_fp(stderr);
+        cerr << "RSA encryption failed" << endl;
+        exit(EXIT_FAILURE);
     }
 
-    RSA_free(rsa);
+    return encryptedData;
 }
 
 void encryptAES(const vector<uint8_t>& input, vector<uint8_t>& output, const vector<uint8_t>& key) {
@@ -79,7 +76,7 @@ void encryptAES(const vector<uint8_t>& input, vector<uint8_t>& output, const vec
 
 void button_clicked1(){
     // Carga la imagen de un archivo
-    Mat serverImage = imread("/home/jct/Profesor-Server/tec-logo.jpg", IMREAD_UNCHANGED);
+    Mat serverImage = imread("/home/tomeito/CLionProjects/Profesor-Server/tec-logo.jpg", IMREAD_UNCHANGED);
 
     // Convierte la imagen a un conjunto de bytes
     vector<uint8_t> serverImageData;
@@ -112,62 +109,36 @@ void button_clicked1(){
 }
 
 void button_clicked2(){
-    // Carga la imagen de un archivo
-    Mat serverImage = imread("/home/jct/Profesor-Server/tec-logo.jpg", IMREAD_UNCHANGED);
+    // Load public key
+    RSA* publicKey = loadPublicKey("/home/tomeito/CLionProjects/Profesor-Server/public_key.pem");
 
-    // Convierte la imagen a un conjunto de bytes
-    vector<uint8_t> serverImageData;
-    imencode(".jpg", serverImage, serverImageData);
+    // Load the image from file
+    ifstream imageFile("/home/tomeito/CLionProjects/Profesor-Server/tec-logo.jpg", ios::binary | ios::ate);
+    streamsize imageSize = imageFile.tellg();
+    imageFile.seekg(0, ios::beg);
+    vector<uint8_t> imageData(imageSize);
+    if (imageFile.read(reinterpret_cast<char*>(imageData.data()), imageSize)) {
+        cout << "Image loaded successfully" << endl;
+    } else {
+        cerr << "Error reading image file" << endl;
 
-    // Genera un par de claves RSA
-    RSA *rsa = RSA_generate_key(2048, RSA_F4, NULL, NULL);
-    if (rsa == NULL) {
-        cerr << "Error generando la clave RSA" << endl;
-        close(clientSocket);
-        return;
     }
 
-    // Obtiene la clave pública en formato DER
-    BIO *bio = BIO_new(BIO_s_mem());
-    i2d_RSAPublicKey_bio(bio, rsa);
-    vector<uint8_t> rsaPublicKey;
-    char buffer[256];
-    int bytesRead;
-    while ((bytesRead = BIO_read(bio, buffer, sizeof(buffer))) > 0) {
-        rsaPublicKey.insert(rsaPublicKey.end(), buffer, buffer + bytesRead);
-    }
-    BIO_free(bio);
+    // Print sizes
+    cout << "Size of data to encrypt: " << imageSize << " bytes" << endl;
+    cout << "RSA Key size: " << RSA_size(publicKey) << " bytes" << endl;
+    cout << "Maximum allowed size: " << RSA_size(publicKey) - 11 << " bytes" << endl;
 
-    // Encripta la imagen con RSA
-    vector<uint8_t> encryptedImageData;
-    encryptRSA(serverImageData, encryptedImageData, rsaPublicKey);
+// Encrypt image data using RSA
+    vector<uint8_t> encryptedImageData = encryptRSA(imageData.data(), imageSize, publicKey);
 
-    // Envía el identificador, el tamaño de la imagen cifrada, la clave RSA pública y la imagen al cliente
+// Send the size of the encrypted image data
     uint32_t encryptedImageSize = encryptedImageData.size();
-    uint32_t publicKeySize = rsaPublicKey.size();
-
-    cout << "Tamaño de la clave pública RSA a enviar: " << publicKeySize << endl;
-
-    // Envía el tamaño de la imagen cifrada, la clave RSA pública y la imagen al cliente
     send(clientSocket, &encryptedImageSize, sizeof(encryptedImageSize), 0);
-    send(clientSocket, &publicKeySize, sizeof(publicKeySize), 0);
 
-    // Envía la clave RSA pública al cliente
-    if (send(clientSocket, rsaPublicKey.data(), publicKeySize, 0) == -1) {
-        cerr << "Error enviando la clave pública RSA al cliente" << endl;
-        close(clientSocket);
-        return;
-    }
+// Send the encrypted image data
+    send(clientSocket, encryptedImageData.data(), encryptedImageSize, 0);
 
-    // Envía la imagen cifrada al cliente
-    if (send(clientSocket, encryptedImageData.data(), encryptedImageSize, 0) == -1) {
-        cerr << "Error enviando la imagen cifrada al cliente" << endl;
-        close(clientSocket);
-        return;
-    }
-
-    // Limpieza
-    RSA_free(rsa);
 }
 
 int main(int argc, char *argv[]) {
@@ -216,7 +187,7 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
-    gtk_builder_add_from_file(builder, "/home/jct/Profesor-Server/algoritmos.glade", NULL);
+    gtk_builder_add_from_file(builder, "/home/tomeito/CLionProjects/Profesor-Server/algoritmos.glade", NULL);
 
     window = GTK_WIDGET(gtk_builder_get_object(builder, "myWindow"));
     button1 = GTK_WIDGET(gtk_builder_get_object(builder, "algoritmo"));
