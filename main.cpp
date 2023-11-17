@@ -4,6 +4,9 @@
 #include <arpa/inet.h>
 #include <opencv2/opencv.hpp>
 #include <gtk/gtk.h>
+#include <openssl/rand.h>
+#include <openssl/aes.h>
+#include <openssl/evp.h>
 
 using namespace std;
 using namespace cv;
@@ -12,8 +15,62 @@ GtkWidget *window;
 GtkWidget *button1;
 GtkWidget *button2;
 
+int clientSocket;
+
+void encryptAES(const vector<uint8_t>& input, vector<uint8_t>& output, const vector<uint8_t>& key) {
+    EVP_CIPHER_CTX* ctx;
+    int len;
+    int ciphertext_len;
+
+    // Create and initialize the context
+    ctx = EVP_CIPHER_CTX_new();
+    EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, key.data(), NULL);
+
+    // Set up the output buffer
+    output.resize(input.size() + EVP_CIPHER_block_size(EVP_aes_128_ecb()));
+
+    // Perform the encryption
+    EVP_EncryptUpdate(ctx, output.data(), &len, input.data(), input.size());
+    ciphertext_len = len;
+
+    // Finalize the encryption
+    EVP_EncryptFinal_ex(ctx, output.data() + len, &len);
+    ciphertext_len += len;
+
+    // Clean up
+    EVP_CIPHER_CTX_free(ctx);
+    output.resize(ciphertext_len);
+}
+
 void button_clicked1(){
-    printf("algoritmo1 \n");
+    // Carga la imagen de un archivo
+    Mat serverImage = imread("/home/jct/Profesor-Server/tec-logo.jpg", IMREAD_UNCHANGED);
+
+    // Convierte la imagen a un set de bytes
+    vector<uint8_t> serverImageData;
+    imencode(".jpg", serverImage, serverImageData);
+
+    // Genera una clave AES aleatoria
+    vector<uint8_t> aesKey(AES_BLOCK_SIZE);
+    if (RAND_bytes(aesKey.data(), AES_BLOCK_SIZE) != 1) {
+        cerr << "Error generando la clave AES" << endl;
+        close(clientSocket);
+        return;
+    }
+
+    // Encripta la imagen con AES
+    vector<uint8_t> encryptedImageData;
+    encryptAES(serverImageData, encryptedImageData, aesKey);
+
+    // Envía el tamaño de la imagen cifrada y la clave al cliente
+    uint32_t encryptedImageSize = encryptedImageData.size();
+    send(clientSocket, &encryptedImageSize, sizeof(encryptedImageSize), 0);
+
+    uint32_t keySize = aesKey.size();
+    send(clientSocket, &keySize, sizeof(keySize), 0);
+
+    send(clientSocket, encryptedImageData.data(), encryptedImageSize, 0);
+    send(clientSocket, aesKey.data(), keySize, 0);
 }
 
 void button_clicked2(){
@@ -52,7 +109,7 @@ int main(int argc, char *argv[]) {
     // Acepyta la conexion
     sockaddr_in clientAddress;
     socklen_t clientAddressSize = sizeof(clientAddress);
-    int clientSocket = accept(serverSocket, reinterpret_cast<sockaddr*>(&clientAddress), &clientAddressSize);
+    clientSocket = accept(serverSocket, reinterpret_cast<sockaddr*>(&clientAddress), &clientAddressSize);
 
     if (clientSocket == -1) {
         cerr << "Error aceptando conexiones" << endl;
@@ -62,40 +119,11 @@ int main(int argc, char *argv[]) {
 
     cout << "Conectado al cliente " << inet_ntoa(clientAddress.sin_addr) << endl;
 
-    // Recibe el tamaño de la imagen
-    uint32_t imageSize;
-    recv(clientSocket, &imageSize, sizeof(imageSize), 0);
-
-    // Recibe la información de la imagen
-    vector<uint8_t> imageData(imageSize);
-    recv(clientSocket, imageData.data(), imageSize, 0);
-
-    // Convierte la imagen
-    Mat image = imdecode(imageData, IMREAD_UNCHANGED);
-
-    // Enseña la imagen recibida
-    imshow("Imagen recibida por el Profesor", image);
-    waitKey(0);
-
-    // Carga la imagen de un archivo
-    Mat serverImage = imread("/home/tomeito/CLionProjects/Server/tec-logo.jpg", IMREAD_UNCHANGED);
-
-    // Convierte la imagen a un set de bytes
-    vector<uint8_t> serverImageData;
-    imencode(".jpg", serverImage, serverImageData);
-
-    // Envia el tamaño de la imagen al cliente
-    uint32_t serverImageSize = serverImageData.size();
-    send(clientSocket, &serverImageSize, sizeof(serverImageSize), 0);
-
-    // Envia la imagen al cliente
-    send(clientSocket, serverImageData.data(), serverImageSize, 0);
-
     GtkBuilder *builder;
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
-    gtk_builder_add_from_file(builder, "/home/tomeito/CLionProjects/Server/algoritmos.glade",NULL);
+    gtk_builder_add_from_file(builder, "/home/jct/Profesor-Server/algoritmos.glade",NULL);
 
     window = GTK_WIDGET(gtk_builder_get_object(builder, "myWindow"));
     button1 = GTK_WIDGET(gtk_builder_get_object(builder, "algoritmo"));

@@ -11,4 +11,4 @@ add_executable(Server main.cpp)
 
 include_directories(${OpenCV_INCLUDE_DIRS} ${GTK3_INCLUDE_DIRS})
 
-target_link_libraries(Server ${OpenCV_LIBS} ${GTK3_LIBRARIES})
+target_link_libraries(Server ${OpenCV_LIBS} ${GTK3_LIBRARIES} ssl crypto)
